@@ -1,6 +1,6 @@
 package com.training.pom;
 
-
+//driver.findElement(By.linkText("ACCOUNT")).click();
 
 
 import java.util.List;
@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class HomePagePOM {
 private WebDriver driver; 
-static int b=0;
+//static int b=0;
 
 
 
@@ -55,6 +55,28 @@ static int b=0;
 	@FindBy(xpath="//ul[@class='dropdown-menu']/li[5]")
 	private WebElement loggingOut2;
 	
+	@FindBy(xpath="//*[@id='page']/div/div[4]/div/div/div[2]/h4/a")
+	private WebElement finalCourse;
+	
+	@FindBy(id="istooldesc_2957")
+	private WebElement description;
+	
+	@FindBy(xpath="//input[@class='form-control']")
+	private WebElement search;
+	
+	@FindBy(xpath="//div[@class='input-group-btn']/button")
+	private WebElement searchButton;
+	
+	@FindBy(xpath="//a[contains(@class,'btn btn-lg btn-success btn-block')]")
+	private WebElement subscribe;
+	
+	public void clickSearch(){
+		this.searchButton.click();
+	}
+	public void subscribeClick(){
+		this.subscribe.click();
+	}
+	
 	public void getOut() throws InterruptedException{
 		
 		this.loggingOut.click();
@@ -63,6 +85,21 @@ static int b=0;
 		
 	}
 	
+	public void openSelected(String data1){
+		driver.findElement(By.linkText(data1)).click();
+		
+	}
+	public void searchCourse(String data)
+	{
+		this.search.sendKeys(data);
+	}
+	public void openDescription(){
+		this.description.click();
+	}
+	
+	public void enterFinalCourse(){
+		this.finalCourse.click();
+	}
 	
 	
 	public void sendUserName(String userName) {
@@ -91,7 +128,7 @@ static int b=0;
 		 this.myCourses.click();
 	 }
 	 
-	 public void selectedCourse(WebDriver driver){
+	/* public void selectedCourse(WebDriver driver){
 			List<WebElement> courses= driver.findElements(By.xpath("//h4[@class='course-items-title']"));
 			 int num=courses.size();
 			 System.out.println(num);
@@ -105,10 +142,10 @@ static int b=0;
 			       }
 			      
 			       }
-		 }
+		 }*/
 	 
 	 
-	 public void displayCheck(WebDriver driver)
+	 /*public void displayCheck(WebDriver driver)
 		{
 			
 			
@@ -137,6 +174,6 @@ static int b=0;
 				driver.findElement(By.xpath("//ul[@class='pagination']//a[text()=  '"+rt+"' ]")).click();
 				Thread.sleep(2000);
 			   displayCheck(driver);	  }
-	 }
+	 }*/
 	
 }

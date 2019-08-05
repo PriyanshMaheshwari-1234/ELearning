@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.training.generics.ApplicationMethods;
 import com.training.generics.ScreenShot;
 import com.training.pom.HomePagePOM;
 
@@ -23,6 +24,7 @@ public class SampleTest1 {
 	private WebDriver driver; 
 	private String baseUrl; 
 	private HomePagePOM homePagePOM; 
+	private ApplicationMethods appMethod;
 	private static Properties properties; 
 	private ScreenShot screenShot; 
 	
@@ -60,7 +62,7 @@ public class SampleTest1 {
 	@AfterMethod
 	public void tearDown() throws Exception {
 		Thread.sleep(5000);
-		//driver.quit();
+		driver.quit();
 		
 		System.out.println("After method executed");
 	}
@@ -68,36 +70,36 @@ public class SampleTest1 {
 	
 	
 	
-	@Test(priority=1)
+	@Test(priority=1,enabled=false)
 	public void loginPassTest() throws InterruptedException {
-		
-		
-			screenShot.captureScreenShot("First");
-		homePagePOM.pressHome();
+		screenShot.captureScreenShot("First");
+		//homePagePOM.pressHome();
 		homePagePOM.pressCatalog();
-		homePagePOM.displayCheck(driver);
-		  homePagePOM.countAvailableCourses();
-		  
-	}
+		homePagePOM.searchCourse("ACCOUNT");
+		homePagePOM.clickSearch();
+		homePagePOM.openSelected("ACCOUNT");
+		homePagePOM.subscribeClick();
+		//appMethod.displayCheck(driver);
+		// appMethod.countAvailableCourses();
+		  }
 		
 		
 		
-	@Test(priority=2)
+	@Test(priority=2,enabled=false)
 	public void myCourseTest(){
-		homePagePOM.clickMyCourses();
-		homePagePOM.selectedCourse(driver);
-		 
-	}
+		appMethod.selectedCourse(driver);
+		homePagePOM.enterFinalCourse();
+		homePagePOM.openDescription();
+		}
 	
 	
 	
 	@Test(priority=3)
 	public void logOut() throws InterruptedException{
+		screenShot.captureScreenShot("second");
 		homePagePOM.getOut();
-		
-		
-		
-	}
+		screenShot.captureScreenShot("third");
+		}
 	
 	
 }
